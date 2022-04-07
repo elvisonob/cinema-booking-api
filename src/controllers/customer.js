@@ -31,6 +31,20 @@ const createCustomer = async (req, res) => {
     res.json({ data: createdCustomer });
 }
 
+const updateCustomer = async (req, res) => {
+
+
+const updatedCustomer = await prisma.customer.update({
+    where: {
+        id:parseInt(req.params.id)
+    },
+    data: {
+              name: req.body.name
+          },
+    });
+    res.json({ data: updatedCustomer });
+  };
+  
+
 module.exports = {
-    createCustomer
-};
+    createCustomer, updateCustomer};
